@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  🏗️ <br>
+   <br>
   ProjectBuilder
   <br>
 </h1>
@@ -28,7 +28,7 @@
 
 <br>
 
-## 🔖 About
+##  About
 
 **ProjectBuilder** is an interactive visual tool designed for software developers and architects to design system infrastructures and architectures using an intuitive "Drag & Drop" interface.
 
@@ -36,18 +36,18 @@ Unlike generic drawing tools, ProjectBuilder is **tech-centric**, featuring a ma
 
 ---
 
-## ✨ Features
+##  Features
 
-* **🎨 Visual Modeling:** Build complex diagrams on an infinite canvas using **React Flow**.
-* **💾 Persistence:** Save your progress and retrieve diagrams later using a unique Project ID.
-* **🔗 Easy Sharing:** Generate access tokens or simply share the Project ID to collaborate.
-* **📚 Tech Library:** Hundreds of categorized icons including Cloud Providers, Databases, and DevTools.
-* **🎓 Onboarding:** Integrated interactive tutorial using **Intro.js** to guide new users.
-* **📱 Responsive:** Fully adaptive interface working seamlessly on Desktop and Mobile devices.
+* ** Visual Modeling:** Build complex diagrams on an infinite canvas using **React Flow**.
+* ** Persistence:** Save your progress and retrieve diagrams later using a unique Project ID.
+* ** Easy Sharing:** Generate access tokens or simply share the Project ID to collaborate.
+* ** Tech Library:** Hundreds of categorized icons including Cloud Providers, Databases, and DevTools.
+* ** Onboarding:** Integrated interactive tutorial using **Intro.js** to guide new users.
+* ** Responsive:** Fully adaptive interface working seamlessly on Desktop and Mobile devices.
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 This project is built with the latest bleeding-edge technologies in the JavaScript ecosystem.
 
@@ -76,7 +76,7 @@ This project is built with the latest bleeding-edge technologies in the JavaScri
 
 ---
 
-## 🐳 Getting Started
+##  Getting Started
 
 The most efficient way to run this project is using Docker.
 
@@ -116,7 +116,7 @@ The most efficient way to run this project is using Docker.
 
 ---
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 The API is fully documented via Swagger. Here are the core resources:
 
@@ -130,7 +130,7 @@ The API is fully documented via Swagger. Here are the core resources:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 ProjectBuilder/
