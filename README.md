@@ -1,102 +1,153 @@
+<h1 align="center">
+  <br>
+  🏗️ <br>
+  ProjectBuilder
+  <br>
+</h1>
 
-Pork: Seu Cofrinho Digital
-Este projeto é uma ferramenta de gestão financeira digital, desenvolvida para ajudar os usuários a controlar gastos, economizar dinheiro e atingir metas financeiras. O "Pork" atua como um auxiliar financeiro digital que oferece organização e praticidade.
+<h4 align="center">Visualize, Model, and Generate your System Architecture.</h4>
 
-Recursos Principais
-Plano de Economia: Oferece planos de economia personalizados para auxiliar o usuário a fazer da economia parte da rotina.
+<p align="center">
+  <a href="#-about">About</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-api-docs">API Docs</a> •
+  <a href="#-author">Author</a>
+</p>
 
-Registro de Gastos: Permite registrar e organizar despesas.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-active-success.svg?style=flat-square&color=2E8B57" alt="Status">
+  <img src="https://img.shields.io/badge/react-v19-blue?style=flat-square&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/vite-v7-purple?style=flat-square&logo=vite" alt="Vite">
+  <img src="https://img.shields.io/badge/node-v20-green?style=flat-square&logo=nodedotjs" alt="Node">
+  <img src="https://img.shields.io/badge/docker-enabled-blue?style=flat-square&logo=docker" alt="Docker">
+  <img src="https://img.shields.io/badge/postgresql-db-336791?style=flat-square&logo=postgresql" alt="Postgres">
+  <img src="https://img.shields.io/badge/license-ISC-lightgrey?style=flat-square" alt="License">
+</p>
 
-Metas de Economia: Permite a definição de objetivos para motivar o usuário a economizar dinheiro.
+<br>
 
-Organização Financeira: Oferece uma visão clara de onde o dinheiro está sendo gasto, com a capacidade de categorizar despesas e gerenciar contas em um só lugar.
+## 🔖 About
 
-Experiência Individual: As metas podem ser personalizadas de acordo com os sonhos de cada usuário.
+**ProjectBuilder** is an interactive visual tool designed for software developers and architects to design system infrastructures and architectures using an intuitive "Drag & Drop" interface.
 
-Tecnologias e Dependências
-O projeto foi construído utilizando as seguintes tecnologias:
+Unlike generic drawing tools, ProjectBuilder is **tech-centric**, featuring a massive library of real-world icons (AWS, Azure, Languages, Frameworks) and allowing users to save and share diagrams via unique IDs without the need for mandatory registration.
 
-Frontend
-React
+---
 
-Vite
+## ✨ Features
 
-Axios: Para chamadas de API
+* **🎨 Visual Modeling:** Build complex diagrams on an infinite canvas using **React Flow**.
+* **💾 Persistence:** Save your progress and retrieve diagrams later using a unique Project ID.
+* **🔗 Easy Sharing:** Generate access tokens or simply share the Project ID to collaborate.
+* **📚 Tech Library:** Hundreds of categorized icons including Cloud Providers, Databases, and DevTools.
+* **🎓 Onboarding:** Integrated interactive tutorial using **Intro.js** to guide new users.
+* **📱 Responsive:** Fully adaptive interface working seamlessly on Desktop and Mobile devices.
 
-SweetAlert2: Para mensagens de alerta
+---
 
-React Router DOM: Para navegação entre páginas
+## 🚀 Tech Stack
 
-Tailwind CSS: Para estilos e design
+This project is built with the latest bleeding-edge technologies in the JavaScript ecosystem.
 
-AOS: Para animações
+### Frontend
+| Technology | Description |
+| :--- | :--- |
+| **React 19** | Latest core library for building the UI. |
+| **Vite** | Next-gen build tool for ultra-fast development. |
+| **Tailwind CSS v4** | Modern utility-first CSS framework. |
+| **React Flow** | Powerful library for node-based diagramming. |
+| **Axios** | Promise-based HTTP client. |
+| **Intro.js** | User onboarding and step-by-step guide. |
 
-React Icons: Para ícones
+### Backend
+| Technology | Description |
+| :--- | :--- |
+| **Node.js v20** | Javascript runtime. |
+| **Express** | Minimalist web framework for the API. |
+| **Prisma ORM** | Next-generation Node.js and TypeScript ORM. |
+| **PostgreSQL** | robust open-source relational database. |
+| **Swagger** | API documentation generator. |
+| **JWT** | Secure token generation for project access. |
 
-React Slick: Para carrosséis
+### Infrastructure
+* **Docker & Docker Compose:** Full containerization of the Frontend, Backend, and Database for consistent environments.
 
-Eslint: Para padronização de código
+---
 
-Estrutura do Projeto
-O projeto é estruturado em diferentes páginas e componentes, conforme a necessidade de navegação e reusabilidade.
+## 🐳 Getting Started
 
-Páginas
-LandingPage.jsx: Página de apresentação do projeto
+The most efficient way to run this project is using Docker.
 
-LoginPage.jsx: Página de login
+### Prerequisites
+* **Docker** and **Docker Compose** installed on your machine.
 
-RegisterPage.jsx: Página de registro
+### Step-by-Step
 
-MainPage.jsx: A página principal onde os usuários podem acessar as funcionalidades
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/bernardosoares30/project-builder.git](https://github.com/bernardosoares30/project-builder.git)
+    cd project-builder
+    ```
 
-VerifyPage.jsx: Página de verificação de e-mail
+2.  **Configure Environment Variables:**
+    Create a `.env` file in the `backend/` directory based on `.env.example`:
+    ```bash
+    # backend/.env
+    DB_USER=postgres
+    DB_PASSWORD=postgres
+    DB_NAME=projectbuilder
+    JWT_SECRET=your_secret_key
+    # DATABASE_URL is constructed automatically within Docker, but looks like:
+    # postgresql://postgres:postgres@db:5432/projectbuilder?schema=public
+    ```
 
-ChangePasswordPage.jsx: Página para redefinir a senha
+3.  **Start the Application:**
+    Run the following command in the root directory:
+    ```bash
+    docker-compose up --build
+    ```
 
-Componentes
-Navbar.jsx e Footer.jsx: Componentes de navegação e rodapé
+4.  **Access the Services:**
+    * **Frontend:** `http://localhost:5173`
+    * **Backend API:** `http://localhost:3000`
+    * **Swagger Docs:** `http://localhost:3000/api-docs`
 
-Input.jsx: Componente de campo de entrada
+---
 
-PrivateRoute.jsx: Componente para proteger rotas
+## 🔌 API Endpoints
 
-CardApresentacaoEsq.jsx e CardApresentacaoDir.jsx: Cards de apresentação dos desenvolvedores
+The API is fully documented via Swagger. Here are the core resources:
 
-CarouselLanding.jsx e CarouselLandingMobile.jsx: Carrosséis para a página de aterragem
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/diagram/create-diagram` | Creates a new diagram and returns a unique ID. |
+| `GET` | `/api/diagram/:id` | Retrieves nodes and edges for a specific diagram. |
+| `PUT` | `/api/diagram/save-diagram/:id` | Updates the structure of an existing diagram. |
+| `DELETE`| `/api/diagram/delete-diagram/:id` | Deletes a diagram permanently. |
+| `POST` | `/api/diagram/generate-token/:id` | Generates a temporary access token for sharing. |
 
-CardWindow.jsx e headerPages.jsx: Componentes para a MainPage
+---
 
-Como Executar o Projeto
-Instale as dependências:
+## 📂 Project Structure
 
-Bash
-
-npm install
-Execute o servidor de desenvolvimento:
-
-Bash
-
-npm run dev
-Acesse a aplicação:
-Abra seu navegador e acesse a URL fornecida pelo Vite.
-
-Para compilar o projeto para produção, utilize o seguinte comando:
-
-Bash
-
-npm run build
-Desenvolvedores
-Bernardo Soares
-
-Função: Desenvolvedor Front-end
-
-Redes sociais: Instagram, GitHub, LinkedIn
-
-João Vitor Chaves
-
-Função: Desenvolvedor Back-end
-
-Redes sociais: Instagram, GitHub, LinkedIn
-
-Notas Técnicas
-O sistema de autenticação foi corrigido para garantir a persistência da sessão e um fluxo de login e logout mais suave. As correções incluem a refatoração do contexto de autenticação, a correção do componente de rota privada e a configuração global do Axios para enviar cookies automaticamente com as credenciais. Além disso, as referências de imagem foram atualizadas para caminhos absolutos para garantir o carregamento correto em todos os ambientes.
+```text
+ProjectBuilder/
+├── backend/
+│   ├── src/
+│   │   ├── controllers/   # Request logic
+│   │   ├── services/      # Business logic & DB interaction
+│   │   ├── routes/        # API Routes definition
+│   │   └── prisma/        # Database Schema & Migrations
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── components/    # Modular UI Components
+│   │   │   ├── diagramComponents/ # React Flow logic
+│   │   │   └── ...
+│   │   ├── contexts/      # Global State (Diagram, Alert)
+│   │   ├── hooks/         # Custom React Hooks
+│   │   └── pages/         # Application Views
+│   └── Dockerfile
+└── docker-compose.yml     # Container Orchestration
