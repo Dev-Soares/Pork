@@ -18,6 +18,7 @@ function getCategoryTotals(expenses: Expense[]) {
 }
 
 export default function ExpenseSummary({ expenses, total }: Props) {
+  const safeTotal = total || 1
   const topCategories = getCategoryTotals(expenses)
 
   return (
@@ -39,7 +40,7 @@ export default function ExpenseSummary({ expenses, total }: Props) {
           <div className="space-y-2.5">
             {topCategories.map(([cat, amount]) => {
               const { colors, Icon, label } = getCategoryMeta(cat)
-              const pct = (amount / total) * 100
+              const pct = (amount / safeTotal) * 100
               return (
                 <div key={cat}>
                   <div className="flex items-center justify-between mb-1">

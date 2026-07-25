@@ -19,11 +19,11 @@ const PLAN_TO_PROFILE: Record<Plan, User['savingsProfile']> = {
 
 export function adaptFindMeResponse(data: ApiUser): User {
   return {
-    id: data.id,
-    name: data.name,
-    email: data.email,
-    monthlyIncome: data.salary,
-    monthlySavings: data.economy,
+    id: data.id ?? '',
+    name: data.name ?? '',
+    email: data.email ?? '',
+    monthlyIncome: Number(data.salary) || 0,
+    monthlySavings: Number(data.economy) || 0,
     savingsProfile: PLAN_TO_PROFILE[data.plan] ?? 'basico',
   }
 }

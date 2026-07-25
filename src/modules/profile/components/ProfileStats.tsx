@@ -44,7 +44,7 @@ interface Props {
 }
 
 export default function ProfileStats({ user, onEdit }: Props) {
-  const plan = PLAN_CONFIG[user.savingsProfile]
+  const plan = PLAN_CONFIG[user.savingsProfile] ?? PLAN_CONFIG.basico
   const PlanIcon = plan.icon
 
   return (

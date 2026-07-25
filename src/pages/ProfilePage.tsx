@@ -9,6 +9,7 @@ import ProfileActions from '@/modules/profile/components/ProfileActions'
 import EditFinancialsSheet from '@/modules/profile/components/EditFinancialsSheet'
 import PageHeader from '@/shared/components/PageHeader'
 import ProfileSkeleton from '@/modules/profile/skeletons/ProfileSkeleton'
+import { getFirstName } from '@/shared/utils/user'
 
 export default function ProfilePage() {
 
@@ -27,7 +28,7 @@ export default function ProfilePage() {
 
           <PageHeader
             icon={UserCircleIcon}
-            title={`Olá, ${user.name.split(' ')[0]}`}
+            title={`Olá, ${getFirstName(user.name)}`}
             description="Gerencie suas informações e acompanhe seu progresso financeiro."
           />
 
@@ -39,8 +40,8 @@ export default function ProfilePage() {
           >
             {/* Identity */}
             <motion.div variants={fadeUp} className="px-1">
-              <p className="text-lg font-semibold text-neutral-100">{user.name}</p>
-              <p className="text-sm text-neutral-500 mt-0.5">{user.email}</p>
+              <p className="text-lg font-semibold text-neutral-100">{user.name || 'Usuário'}</p>
+              <p className="text-sm text-neutral-500 mt-0.5">{user.email || '-'}</p>
             </motion.div>
 
             <ProfileStats user={user} onEdit={() => setIsEditOpen(true)} />

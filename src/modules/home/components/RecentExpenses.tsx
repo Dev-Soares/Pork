@@ -51,7 +51,7 @@ export default function RecentExpenses({ expenses }: Props) {
                 <Icon size={16} className={colors.text} weight="duotone" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-neutral-100 truncate">{expense.title}</p>
+                <p className="text-sm font-medium text-neutral-100 truncate">{expense.title || 'Gasto'}</p>
                 <p className={`text-xs font-medium mt-0.5 ${colors.text}`}>
                   {label}
                 </p>

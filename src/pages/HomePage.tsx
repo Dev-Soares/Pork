@@ -18,6 +18,7 @@ import AddGoalSheet from '@/modules/goals/components/AddGoalSheet'
 import PageHeader from '@/shared/components/PageHeader'
 import HomeSkeleton from '@/modules/home/skeletons/HomeSkeleton'
 import { getCurrentMonthYear, getGreeting } from '@/shared/utils/date'
+import { getFirstName } from '@/shared/utils/user'
 import { showToast } from '@/shared/components/Toast'
 
 export default function HomePage() {
@@ -37,8 +38,8 @@ export default function HomePage() {
 
   const recentExpenses = [...allExpenses].slice(0, 4)
   const monthlyExpenses = allExpenses
-    .filter(e => e.date.startsWith(prefix))
-    .reduce((s, e) => s + e.amount, 0)
+    .filter(e => e.date?.startsWith(prefix))
+    .reduce((s, e) => s + (Number(e.amount) || 0), 0)
 
   const handleAddExpense = async (data: CreateExpense) => {
     await createExpense.mutateAsync(data)
@@ -59,7 +60,7 @@ export default function HomePage() {
 
           <PageHeader
             icon={HandWavingIcon}
-            title={`${getGreeting()}, ${user?.name?.split(' ')[0] ?? 'convidado'}`}
+            title={`${getGreeting()}, ${getFirstName(user?.name)}`}
             description={`Hoje é ${new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}. Veja como estão suas finanças.`}
           />
 

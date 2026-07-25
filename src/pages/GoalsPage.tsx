@@ -24,8 +24,8 @@ export default function GoalsPage() {
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [depositTarget, setDepositTarget] = useState<Goal | null>(null)
 
-  const totalSaved = goals.reduce((s, g) => s + g.currentAmount, 0)
-  const totalTarget = goals.reduce((s, g) => s + g.targetAmount, 0)
+  const totalSaved = goals.reduce((s, g) => s + (Number(g.currentAmount) || 0), 0)
+  const totalTarget = goals.reduce((s, g) => s + (Number(g.targetAmount) || 0), 0)
   const completedCount = goals.filter(g => g.achieved).length
 
   const addGoal = async (data: CreateGoal) => {

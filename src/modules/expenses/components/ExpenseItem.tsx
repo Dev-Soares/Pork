@@ -32,7 +32,7 @@ export default function ExpenseItem({ expense, onDelete }: Props) {
 
       {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-neutral-100 truncate">{expense.title}</p>
+        <p className="text-sm font-medium text-neutral-100 truncate">{expense.title || 'Gasto'}</p>
         <p className={`text-xs font-medium ${colors.text}`}>{label}</p>
       </div>
 

@@ -11,7 +11,9 @@ interface Props {
 
 export default function ActiveGoals({ goals }: Props) {
   const navigate = useNavigate()
-  const active = goals.filter(g => g.currentAmount < g.targetAmount).slice(0, 3)
+  const active = goals
+    .filter(g => (Number(g.currentAmount) || 0) < (Number(g.targetAmount) || 1))
+    .slice(0, 3)
 
   if (active.length === 0) return null
 
@@ -34,8 +36,10 @@ export default function ActiveGoals({ goals }: Props) {
 
       <motion.ul variants={stagger} initial="hidden" animate="show" className="space-y-2">
         {active.map(goal => {
-          const pct = Math.min((goal.currentAmount / goal.targetAmount) * 100, 100)
-          const remaining = goal.targetAmount - goal.currentAmount
+          const current = Number(goal.currentAmount) || 0
+          const target = Number(goal.targetAmount) || 1
+          const pct = Math.min((current / target) * 100, 100)
+          const remaining = target - current
           return (
             <motion.li
               key={goal.id}
@@ -49,7 +53,7 @@ export default function ActiveGoals({ goals }: Props) {
                     <TargetIcon size={14} className="text-neutral-400" weight="duotone" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold text-neutral-100 truncate">{goal.name}</p>
+                    <p className="text-sm font-semibold text-neutral-100 truncate">{goal.name || 'Meta'}</p>
                     <p className="text-xs text-neutral-500 mt-0.5">
                       faltam {formatCurrency(remaining)}
                     </p>

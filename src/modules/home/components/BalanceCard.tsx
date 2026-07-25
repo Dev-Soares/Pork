@@ -9,9 +9,11 @@ interface Props {
 }
 
 export default function BalanceCard({ monthlyIncome, monthlyExpenses }: Props) {
-  const balance = monthlyIncome - monthlyExpenses
-  const pct = Math.min((monthlyExpenses / monthlyIncome) * 100, 100)
-  const isOver = monthlyExpenses > monthlyIncome
+  const income = Number(monthlyIncome) || 0
+  const expenses = Number(monthlyExpenses) || 0
+  const balance = income - expenses
+  const pct = income > 0 ? Math.min((expenses / income) * 100, 100) : 0
+  const isOver = expenses > income
 
   return (
     <motion.div
@@ -63,7 +65,7 @@ export default function BalanceCard({ monthlyIncome, monthlyExpenses }: Props) {
           <div>
             <p className="text-[10px] text-neutral-600 font-medium uppercase tracking-wider mb-0.5">Entrada</p>
             <p className="text-sm font-semibold text-neutral-200 tabular-nums leading-tight">
-              {formatCurrency(monthlyIncome)}
+              {formatCurrency(income)}
             </p>
           </div>
         </div>
@@ -74,7 +76,7 @@ export default function BalanceCard({ monthlyIncome, monthlyExpenses }: Props) {
           <div>
             <p className="text-[10px] text-neutral-600 font-medium uppercase tracking-wider mb-0.5">Saídas</p>
             <p className="text-sm font-semibold text-neutral-200 tabular-nums leading-tight">
-              {formatCurrency(monthlyExpenses)}
+              {formatCurrency(expenses)}
             </p>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { stagger, fadeUp } from '@/lib/animations'
 import { getGreeting } from '@/shared/utils/date'
 
 interface Props {
-  name: string
+  name?: string | null
 }
 
 export default function GreetingHeader({ name }: Props) {
@@ -13,6 +13,8 @@ export default function GreetingHeader({ name }: Props) {
     day: 'numeric',
     month: 'long',
   })
+
+  const firstName = name?.split(' ')[0] || 'convidado'
 
   return (
     <motion.div variants={stagger} initial="hidden" animate="show">
@@ -26,7 +28,7 @@ export default function GreetingHeader({ name }: Props) {
       >
         {greeting},
         <br />
-        <span className="text-brand">{name.split(' ')[0]}</span>
+        <span className="text-brand">{firstName}</span>
       </motion.h1>
     </motion.div>
   )

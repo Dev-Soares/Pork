@@ -30,7 +30,7 @@ export default function AddExpenseSheet({ isOpen, onClose, onAdd }: Props) {
     await onAdd({
       title: data.title,
       category: selectedCat,
-      amount: parseFloat(data.amount.replace(',', '.')),
+      amount: parseFloat((data.amount ?? '').replace(',', '.')),
       date: data.date,
       note: data.note,
     })

@@ -11,12 +11,12 @@ interface Props {
 }
 
 export default function DepositSheet({ goal, onClose, onDeposit }: Props) {
-  const remaining = goal ? goal.targetAmount - goal.currentAmount : 0
+  const remaining = goal ? (Number(goal.targetAmount) || 0) - (Number(goal.currentAmount) || 0) : 0
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<{ amount: string }>()
 
   const submit = async (data: { amount: string }) => {
     if (!goal) return
-    await onDeposit(goal.id, parseFloat(data.amount.replace(',', '.')))
+    await onDeposit(goal.id, parseFloat((data.amount ?? '').replace(',', '.')))
     reset()
   }
 
@@ -34,7 +34,7 @@ export default function DepositSheet({ goal, onClose, onDeposit }: Props) {
               <TargetIcon size={16} className="text-neutral-400" weight="duotone" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-neutral-100">{goal.name}</p>
+              <p className="text-sm font-semibold text-neutral-100">{goal.name || 'Meta'}</p>
               <p className="text-xs text-neutral-500">
                 Faltam {formatCurrency(remaining)} para concluir
               </p>
@@ -56,7 +56,7 @@ export default function DepositSheet({ goal, onClose, onDeposit }: Props) {
                 {...register('amount', {
                   required: 'Informe o valor',
                   pattern: { value: /^\d+([,.]\d{1,2})?$/, message: 'Valor inválido' },
-                  validate: v => parseFloat(v.replace(',', '.')) > 0 || 'Valor deve ser maior que zero',
+                  validate: v => parseFloat((v ?? '').replace(',', '.')) > 0 || 'Valor deve ser maior que zero',
                 })}
               />
             </div>

@@ -1,7 +1,8 @@
 import { z } from 'zod'
 import type { Plan } from '../types/signUp'
 
-export function parseMonthlyIncome(value: string): number {
+export function parseMonthlyIncome(value?: string | null): number {
+  if (!value) return 0
   const normalized = value
     .replace(/\./g, '')
     .replace(',', '.')

@@ -18,7 +18,7 @@ export default function AddGoalSheet({ isOpen, onClose, onAdd }: Props) {
   const submit = async (data: { name: string; targetAmount: string; deadline: string }) => {
     await onAdd({
       name: data.name,
-      targetAmount: parseFloat(data.targetAmount.replace(',', '.')),
+      targetAmount: parseFloat((data.targetAmount ?? '').replace(',', '.')),
       deadline: data.deadline,
     })
     reset()

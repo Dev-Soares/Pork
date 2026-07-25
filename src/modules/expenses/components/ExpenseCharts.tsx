@@ -30,7 +30,7 @@ export default function ExpenseCharts({ expenses }: Props) {
   if (expenses.length === 0) return null
 
   const categories = buildCategoryTotals(expenses)
-  const total = categories.reduce((acc, [, v]) => acc + v, 0)
+  const total = categories.reduce((acc, [, v]) => acc + v, 0) || 1
 
   const size = 180
   const radius = 68
@@ -45,7 +45,7 @@ export default function ExpenseCharts({ expenses }: Props) {
     return { cat, value, pct, dash, gap, offset }
   })
 
-  const topCategory = categories[0]
+  const topCategory = categories[0] ?? ['outros', 0] as [ExpenseCategory, number]
 
   return (
     <motion.div

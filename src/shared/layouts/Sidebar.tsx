@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { House, CurrencyDollar, Target, User } from '@phosphor-icons/react'
 import { useUser } from '@/shared/hooks/useUser'
+import { getFirstName, getInitials } from '@/shared/utils/user'
 
 const NAV_ITEMS = [
   { to: '/dashboard/home',     label: 'Início',  Icon: House          },
@@ -26,7 +27,7 @@ export default function Sidebar() {
         </div>
         {user && (
           <p className="text-[11px] text-neutral-600 mt-2.5 font-medium tracking-wide">
-            Olá, {user.name.split(' ')[0]}
+            Olá, {getFirstName(user.name)}
           </p>
         )}
       </div>
@@ -77,14 +78,14 @@ export default function Sidebar() {
               className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-[11px] font-bold"
               style={{ background: 'rgba(34,197,94,0.12)', color: '#22c55e' }}
             >
-              {user.name.charAt(0).toUpperCase()}
+              {getInitials(user.name)}
             </div>
             <div className="min-w-0">
               <p className="text-[12px] font-semibold text-neutral-300 truncate leading-tight">
-                {user.name.split(' ')[0]}
+                {getFirstName(user.name)}
               </p>
               <p className="text-[10px] text-neutral-600 truncate leading-tight mt-0.5">
-                {user.email}
+                {user.email || '-'}
               </p>
             </div>
           </div>

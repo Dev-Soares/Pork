@@ -33,10 +33,10 @@ export default function ExpensesPage() {
   if (loading) return <ExpensesSkeleton />
 
   const prefix = `${year}-${String(month).padStart(2, '0')}`
-  const allExpenses = allData.filter(e => e.date.startsWith(prefix))
+  const allExpenses = allData.filter(e => e.date?.startsWith(prefix))
   const expenses = activeCategory ? allExpenses.filter(e => e.category === activeCategory) : allExpenses
-  const total = allExpenses.reduce((s, e) => s + e.amount, 0)
-  const availableCategories = [...new Set(allExpenses.map(e => e.category))] as ExpenseCategory[]
+  const total = allExpenses.reduce((s, e) => s + (Number(e.amount) || 0), 0)
+  const availableCategories = [...new Set(allExpenses.map(e => e.category).filter(Boolean))] as ExpenseCategory[]
   const isCurrentMonth = year === now.year && month === now.month
 
   const prevMonth = () => {

@@ -14,8 +14,10 @@ interface Props {
 
 export default function GoalCard({ goal, onDeposit, onDelete }: Props) {
   const [confirming, setConfirming] = useState(false)
-  const pct = Math.min((goal.currentAmount / goal.targetAmount) * 100, 100)
-  const remaining = goal.targetAmount - goal.currentAmount
+  const current = Number(goal.currentAmount) || 0
+  const target = Number(goal.targetAmount) || 1
+  const pct = Math.min((current / target) * 100, 100)
+  const remaining = target - current
   const isComplete = pct >= 100
 
   return (
@@ -36,7 +38,7 @@ export default function GoalCard({ goal, onDeposit, onDelete }: Props) {
           </div>
           <div className="min-w-0">
             <p className={`text-sm font-semibold truncate ${isComplete ? 'text-brand' : 'text-neutral-100'}`}>
-              {goal.name}
+              {goal.name || 'Meta'}
             </p>
             {goal.deadline && (
               <p className="text-xs text-neutral-500 mt-0.5">até {formatDeadline(goal.deadline)}</p>

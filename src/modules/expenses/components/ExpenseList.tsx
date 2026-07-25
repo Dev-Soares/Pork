@@ -13,7 +13,7 @@ interface Props {
 function groupByDate(expenses: Expense[]): [string, Expense[]][] {
   const map = new Map<string, Expense[]>()
   for (const e of expenses) {
-    const key = e.date.slice(0, 10)
+    const key = e.date?.slice(0, 10) ?? 'sem-data'
     const list = map.get(key) ?? []
     list.push(e)
     map.set(key, list)
