@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import App from './App'
-import { UserProvider } from './shared/contexts/userContext'
+import { UserProvider } from './shared/contexts/UserProvider'
 import './assets/index.css'
 
 const queryClient = new QueryClient()

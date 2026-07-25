@@ -5,8 +5,6 @@ import type { Expense, ExpenseCategory } from '../types/expense'
 
 interface Props {
   expenses: Expense[]
-  year: number
-  month: number
 }
 
 const CATEGORY_HEX: Record<ExpenseCategory, string> = {
@@ -38,13 +36,12 @@ export default function ExpenseCharts({ expenses }: Props) {
   const radius = 68
   const stroke = 22
   const circumference = 2 * Math.PI * radius
-  let cumulative = 0
-  const segments = categories.map(([cat, value]) => {
+  const segments = categories.map(([cat, value], index) => {
+    const cumulative = categories.slice(0, index).reduce((sum, [, v]) => sum + v / total, 0)
     const pct = value / total
     const dash = pct * circumference
     const gap = circumference - dash
     const offset = circumference * (1 - cumulative)
-    cumulative += pct
     return { cat, value, pct, dash, gap, offset }
   })
 

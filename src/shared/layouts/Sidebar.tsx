@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { House, CurrencyDollar, Target, User } from '@phosphor-icons/react'
-import { useUser } from '@/shared/contexts/userContext'
+import { useUser } from '@/shared/hooks/useUser'
 
 const NAV_ITEMS = [
   { to: '/dashboard/home',     label: 'Início',  Icon: House          },

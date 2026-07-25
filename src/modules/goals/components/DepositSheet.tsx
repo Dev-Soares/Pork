@@ -55,7 +55,7 @@ export default function DepositSheet({ goal, onClose, onDeposit }: Props) {
                 className="flex-1 bg-transparent text-neutral-100 text-2xl font-bold pb-2 border-b border-neutral-700 focus:border-brand outline-none transition-colors duration-200 placeholder:text-neutral-700 tabular-nums"
                 {...register('amount', {
                   required: 'Informe o valor',
-                  pattern: { value: /^\d+([,\.]\d{1,2})?$/, message: 'Valor inválido' },
+                  pattern: { value: /^\d+([,.]\d{1,2})?$/, message: 'Valor inválido' },
                   validate: v => parseFloat(v.replace(',', '.')) > 0 || 'Valor deve ser maior que zero',
                 })}
               />

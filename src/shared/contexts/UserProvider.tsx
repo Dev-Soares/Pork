@@ -1,17 +1,7 @@
-import { createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
-import type { User } from '@/modules/profile/types/user'
 import { useFindMe, meQueryKey } from '@/shared/hooks/useFindMe'
-
-interface UserContextValue {
-  user: User | null
-  loading: boolean
-  isLogged: boolean
-  refreshUser: () => Promise<void>
-}
-
-const UserContext = createContext<UserContextValue | null>(null)
+import { UserContext } from './UserContext'
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient()
@@ -26,10 +16,4 @@ export function UserProvider({ children }: { children: ReactNode }) {
       {children}
     </UserContext.Provider>
   )
-}
-
-export function useUser() {
-  const ctx = useContext(UserContext)
-  if (!ctx) throw new Error('useUser must be used within UserProvider')
-  return ctx
 }

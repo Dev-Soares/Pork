@@ -58,7 +58,7 @@ export default function AddGoalSheet({ isOpen, onClose, onAdd }: Props) {
               className="w-full bg-transparent text-neutral-100 text-sm pb-2 border-b border-neutral-700 focus:border-brand outline-none transition-colors duration-200 placeholder:text-neutral-700"
               {...register('targetAmount', {
                 required: 'Informe o valor',
-                pattern: { value: /^\d+([,\.]\d{1,2})?$/, message: 'Valor inválido' },
+                pattern: { value: /^\d+([,.]\d{1,2})?$/, message: 'Valor inválido' },
               })}
             />
             {errors.targetAmount && <p className="text-xs text-red-400 mt-1">{errors.targetAmount.message}</p>}

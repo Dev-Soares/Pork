@@ -155,11 +155,10 @@ function DonutChart({ segments }: { segments: { pct: number; color: string }[] }
   const circumference = 2 * Math.PI * radius
   const gapSize = 4
 
-  let offset = 0
-  const arcs = segments.map((seg) => {
+  const arcs = segments.map((seg, index) => {
+    const offset = segments.slice(0, index).reduce((sum, s) => sum + (s.pct / 100) * circumference, 0)
     const len = (seg.pct / 100) * circumference - gapSize
     const dashOffset = -offset
-    offset += (seg.pct / 100) * circumference
     return { ...seg, len, dashOffset, gapLen: circumference - len }
   })
 

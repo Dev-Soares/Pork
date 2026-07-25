@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { fadeUp, stagger, scaleIn } from '@/lib/animations'
 
@@ -44,29 +44,31 @@ export default function FeaturesSection() {
   const rafRef = useRef<number>(0)
 
   const current = features[active]
-  const tick = useCallback(() => {
-    const now = performance.now()
-    if (!pausedRef.current) {
-      elapsedRef.current += now - lastTickRef.current
-    }
-    lastTickRef.current = now
-
-    const pct = Math.min((elapsedRef.current / INTERVAL) * 100, 100)
-    setProgress(pct)
-
-    if (elapsedRef.current >= INTERVAL) {
-      elapsedRef.current = 0
-      setActive((prev) => (prev + 1) % features.length)
-    }
-
-    rafRef.current = requestAnimationFrame(tick)
-  }, [])
 
   useEffect(() => {
-    lastTickRef.current = performance.now()
+    lastTickRef.current = Date.now()
+
+    const tick = () => {
+      const now = Date.now()
+      if (!pausedRef.current) {
+        elapsedRef.current += now - lastTickRef.current
+      }
+      lastTickRef.current = now
+
+      const pct = Math.min((elapsedRef.current / INTERVAL) * 100, 100)
+      setProgress(pct)
+
+      if (elapsedRef.current >= INTERVAL) {
+        elapsedRef.current = 0
+        setActive((prev) => (prev + 1) % features.length)
+      }
+
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
     rafRef.current = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(rafRef.current)
-  }, [tick])
+  }, [])
 
   const handlePause = () => {
     pausedRef.current = true
@@ -74,14 +76,15 @@ export default function FeaturesSection() {
 
   const handleResume = () => {
     pausedRef.current = false
-    lastTickRef.current = performance.now()
+    lastTickRef.current = Date.now()
   }
 
   const handleSelect = (i: number) => {
     setActive(i)
     elapsedRef.current = 0
     setProgress(0)
-    lastTickRef.current = performance.now()
+    // eslint-disable-next-line react-hooks/purity
+    lastTickRef.current = Date.now()
   }
 
   return (
