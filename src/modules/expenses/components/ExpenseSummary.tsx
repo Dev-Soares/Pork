@@ -1,5 +1,5 @@
 import { formatCurrency } from '@/shared/utils/currency'
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
+import { getCategoryMeta } from '../types/expense'
 import type { Expense, ExpenseCategory } from '../types/expense'
 
 interface Props {
@@ -38,15 +38,14 @@ export default function ExpenseSummary({ expenses, total }: Props) {
           <p className="text-xs font-medium text-neutral-600 mb-3">Top categorias</p>
           <div className="space-y-2.5">
             {topCategories.map(([cat, amount]) => {
-              const c = CATEGORY_COLORS[cat]
-              const Icon = CATEGORY_ICONS[cat]
+              const { colors, Icon, label } = getCategoryMeta(cat)
               const pct = (amount / total) * 100
               return (
                 <div key={cat}>
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-1.5">
-                      <Icon size={13} className={c.text} weight="duotone" />
-                      <span className="text-xs text-neutral-400">{CATEGORY_LABELS[cat]}</span>
+                      <Icon size={13} className={colors.text} weight="duotone" />
+                      <span className="text-xs text-neutral-400">{label}</span>
                     </div>
                     <span className="text-xs font-medium text-neutral-300 tabular-nums">
                       {formatCurrency(amount)}
@@ -54,7 +53,7 @@ export default function ExpenseSummary({ expenses, total }: Props) {
                   </div>
                   <div className="h-0.5 rounded-full bg-neutral-800 overflow-hidden">
                     <div
-                      className={`h-full rounded-full ${c.bar}`}
+                      className={`h-full rounded-full ${colors.bar}`}
                       style={{ width: `${pct}%` }}
                     />
                   </div>

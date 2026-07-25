@@ -56,3 +56,13 @@ export const CATEGORY_ICONS: Record<ExpenseCategory, Icon> = {
   educacao:    BookOpenIcon,
   outros:      TagIcon,
 }
+
+export const getCategoryMeta = (category?: string | null) => {
+  const key = category && category in CATEGORY_LABELS ? (category as ExpenseCategory) : 'outros'
+  return {
+    key,
+    label: CATEGORY_LABELS[key],
+    colors: CATEGORY_COLORS[key],
+    Icon: CATEGORY_ICONS[key],
+  }
+}

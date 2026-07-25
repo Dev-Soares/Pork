@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { DotsThreeVertical, TrashIcon } from '@phosphor-icons/react'
 import { formatCurrency } from '@/shared/utils/currency'
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
+import { getCategoryMeta } from '../types/expense'
 import type { Expense } from '../types/expense'
 
 interface Props {
@@ -12,8 +12,7 @@ interface Props {
 export default function ExpenseItem({ expense, onDelete }: Props) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  const colors = CATEGORY_COLORS[expense.category]
-  const Icon = CATEGORY_ICONS[expense.category]
+  const { colors, Icon, label } = getCategoryMeta(expense.category)
 
   useEffect(() => {
     if (!open) return
@@ -34,7 +33,7 @@ export default function ExpenseItem({ expense, onDelete }: Props) {
       {/* Info */}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-neutral-100 truncate">{expense.title}</p>
-        <p className={`text-xs font-medium ${colors.text}`}>{CATEGORY_LABELS[expense.category]}</p>
+        <p className={`text-xs font-medium ${colors.text}`}>{label}</p>
       </div>
 
       {/* Amount */}

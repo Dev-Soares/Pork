@@ -3,7 +3,7 @@ import { ArrowRightIcon } from '@phosphor-icons/react'
 import { stagger, fadeUp } from '@/lib/animations'
 import { formatCurrency } from '@/shared/utils/currency'
 import { formatRelativeDate } from '@/shared/utils/date'
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '@/modules/expenses/types/expense'
+import { getCategoryMeta } from '@/modules/expenses/types/expense'
 import type { Expense } from '@/modules/expenses/types/expense'
 import { useNavigate } from 'react-router-dom'
 
@@ -40,8 +40,7 @@ export default function RecentExpenses({ expenses }: Props) {
         className="space-y-1.5"
       >
         {expenses.map(expense => {
-          const colors = CATEGORY_COLORS[expense.category]
-          const Icon = CATEGORY_ICONS[expense.category]
+          const { colors, Icon, label } = getCategoryMeta(expense.category)
           return (
             <motion.li
               key={expense.id}
@@ -54,7 +53,7 @@ export default function RecentExpenses({ expenses }: Props) {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-neutral-100 truncate">{expense.title}</p>
                 <p className={`text-xs font-medium mt-0.5 ${colors.text}`}>
-                  {CATEGORY_LABELS[expense.category]}
+                  {label}
                 </p>
               </div>
               <div className="text-right shrink-0">

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/lib/animations'
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '../types/expense'
+import { getCategoryMeta } from '../types/expense'
 import type { Expense, ExpenseCategory } from '../types/expense'
 
 interface Props {
@@ -74,7 +74,7 @@ export default function ExpenseCharts({ expenses }: Props) {
                 cy={size / 2}
                 r={radius}
                 fill="none"
-                stroke={CATEGORY_HEX[seg.cat]}
+                stroke={CATEGORY_HEX[seg.cat] ?? CATEGORY_HEX.outros}
                 strokeWidth={stroke}
                 strokeDasharray={`${seg.dash} ${seg.gap}`}
                 strokeDashoffset={seg.offset}
@@ -87,7 +87,7 @@ export default function ExpenseCharts({ expenses }: Props) {
               Top
             </p>
             <p className="text-xs font-semibold text-neutral-200 mt-0.5">
-              {CATEGORY_LABELS[topCategory[0]]}
+              {getCategoryMeta(topCategory[0]).label}
             </p>
             <p className="text-[10px] text-neutral-500 tabular-nums mt-0.5">
               {Math.round((topCategory[1] / total) * 100)}%
@@ -97,14 +97,13 @@ export default function ExpenseCharts({ expenses }: Props) {
 
         <div className="flex-1 min-w-0 space-y-2.5">
           {categories.slice(0, 6).map(([cat, value]) => {
-            const c = CATEGORY_COLORS[cat]
-            const Icon = CATEGORY_ICONS[cat]
+            const { colors, Icon, label } = getCategoryMeta(cat)
             const pct = Math.round((value / total) * 100)
             return (
               <div key={cat} className="flex items-center gap-2 min-w-0">
-                <Icon size={13} className={`${c.text} shrink-0`} weight="duotone" />
+                <Icon size={13} className={`${colors.text} shrink-0`} weight="duotone" />
                 <span className="text-xs text-neutral-400 truncate flex-1">
-                  {CATEGORY_LABELS[cat]}
+                  {label}
                 </span>
                 <span className="text-xs font-medium text-neutral-300 tabular-nums shrink-0">
                   {pct}%
