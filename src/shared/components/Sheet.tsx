@@ -40,7 +40,7 @@ export default function Sheet({ isOpen, onClose, title, children }: SheetProps) 
 
           {/* Sheet */}
           <motion.div
-            className="relative w-full sm:max-w-md bg-neutral-900 rounded-t-3xl sm:rounded-2xl border border-neutral-800 p-6 pb-8 sm:p-8 z-10"
+            className="relative w-full sm:max-w-md bg-neutral-900 rounded-t-3xl sm:rounded-2xl border border-neutral-800 p-6 pb-24 sm:p-8 z-10"
             initial={{ y: '100%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
